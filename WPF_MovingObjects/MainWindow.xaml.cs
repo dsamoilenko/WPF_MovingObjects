@@ -43,50 +43,50 @@ namespace WPF_MovingObjects
         // Запускается по нажатию мыши на Canvas
         private void mainCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            FrameworkElement currentElement = null;
+            FrameworkElement currentElem = null;
 
             int num = rand.Next(2);
 
             switch (num)
             {
                 case 0:
-                    currentElement = new Ellipse();
+                    currentElem = new Ellipse();
 
                     // Задать случайный цвет контура
-                    ((Ellipse)currentElement).Stroke = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
+                    ((Ellipse)currentElem).Stroke = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
 
                     // Покрасить созданный объект случайным цветом
-                    ((Ellipse)currentElement).Fill = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
+                    ((Ellipse)currentElem).Fill = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
 
                     break;
                 case 1:
-                    currentElement = new Rectangle();
+                    currentElem = new Rectangle();
 
                     // Задать случайный цвет контура
-                    ((Rectangle)currentElement).Stroke = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
+                    ((Rectangle)currentElem).Stroke = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
 
                     // Покрасить созданный объект случайным цветом
-                    ((Rectangle)currentElement).Fill = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
+                    ((Rectangle)currentElem).Fill = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)));
 
                     break;
             }
 
-            currentElement.Width = 80;
-            currentElement.Height = 50;
+            currentElem.Width = 80;
+            currentElem.Height = 50;
 
             // Установить координаты для созданного элемента из координат мыши
-            Point coords = e.GetPosition(mainCanvas);
-            Canvas.SetLeft(currentElement, coords.X);
-            Canvas.SetTop(currentElement, coords.Y);
+            Point coords = e.GetPosition(globalCanvas);
+            Canvas.SetLeft(currentElem, coords.X);
+            Canvas.SetTop(currentElem, coords.Y);
 
             // Поместить созданный объект на самый нижний Z-уровень
-            Canvas.SetZIndex(currentElement, 0);
+            Canvas.SetZIndex(currentElem, 0);
 
             // Зарегистрировать обработчик нажатия мышью на созданном объекте
-            currentElement.MouseDown += Element_MouseDown;
+            currentElem.MouseDown += Element_MouseDown;
 
             // добавление на canvas
-            mainCanvas.Children.Add(currentElement);
+            globalCanvas.Children.Add(currentElem);
         }
 
         private void Element_MouseDown(object sender, MouseButtonEventArgs e)
@@ -130,7 +130,7 @@ namespace WPF_MovingObjects
             if (movingElement != null)
             {
                 // Текущие координаты мыши на холсте
-                Point coords = e.GetPosition(mainCanvas);
+                Point coords = e.GetPosition(globalCanvas);
 
                 // Перемещение элемента по новым координатам мыши, с учётом места нажатия на элементе
                 Canvas.SetLeft(movingElement, coords.X - elementCoords.X);  // Moving X-coord
@@ -138,7 +138,7 @@ namespace WPF_MovingObjects
             }
         }
 
-        private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
+        private void globalCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (movingElement != null)
             {
@@ -146,7 +146,7 @@ namespace WPF_MovingObjects
                 movingElement.ClearValue(EffectProperty);
 
                 // Поместить отпущенный объект на самый нижний Z-уровень
-                Canvas.SetZIndex(movingElement, 5);
+                Canvas.SetZIndex(movingElement, 10);
 
                 movingElement = null;
             }

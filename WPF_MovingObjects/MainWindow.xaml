@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_MovingObjects"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <Canvas Name="mainCanvas" MouseUp="mainCanvas_MouseUp" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" Background="Beige">
+    <Canvas Name="globalCanvas" MouseUp="globalCanvas_MouseUp" MouseDown="mainCanvas_MouseDown" MouseMove="mainCanvas_MouseMove" Background="Beige">
 
     </Canvas>
 </Window>

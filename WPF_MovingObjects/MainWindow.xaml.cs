@@ -73,7 +73,7 @@ namespace WPF_MovingObjects
             currentElem.Height = 50;
 
             // Установить координаты для созданного элемента из координат мыши
-            Point coords = e.GetPosition(mainCanvas);
+            Point coords = e.GetPosition(globalCanvas);
             Canvas.SetLeft(currentElem, coords.X);
             Canvas.SetTop(currentElem, coords.Y);
 
@@ -84,7 +84,7 @@ namespace WPF_MovingObjects
             currentElem.MouseDown += Element_MouseDown;
 
             // добавление на canvas
-            mainCanvas.Children.Add(currentElem);
+            globalCanvas.Children.Add(currentElem);
         }
 
         private void Element_MouseDown(object sender, MouseButtonEventArgs e)
@@ -128,7 +128,7 @@ namespace WPF_MovingObjects
             if (movingElement != null)
             {
                 // Текущие координаты мыши на холсте
-                Point coords = e.GetPosition(mainCanvas);
+                Point coords = e.GetPosition(globalCanvas);
 
                 // Перемещение элемента по новым координатам мыши, с учётом места нажатия на элементе
                 Canvas.SetLeft(movingElement, coords.X - elementCoords.X);

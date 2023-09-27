@@ -30,6 +30,8 @@ namespace WPF_MovingObjects
 
         public int Count { get; set; }
 
+        public FrameworkElement currentElement { get; set; }
+
         Random rand = new Random();
 
         // Ссылка на передвигаемый объект

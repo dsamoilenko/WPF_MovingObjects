@@ -138,7 +138,7 @@ namespace WPF_MovingObjects
             }
         }
 
-        private void mainCanvas_MouseUp(object sender, MouseButtonEventArgs e)
+        private void globalCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (movingElement != null)
             {

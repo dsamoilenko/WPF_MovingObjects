@@ -27,7 +27,9 @@ namespace WPF_MovingObjects
         }
 
         int count = 0;
-        
+
+        public int Count { get; set; }
+
         Random rand = new Random();
 
         // Ссылка на передвигаемый объект

@@ -133,8 +133,8 @@ namespace WPF_MovingObjects
                 Point coords = e.GetPosition(globalCanvas);
 
                 // Перемещение элемента по новым координатам мыши, с учётом места нажатия на элементе
-                Canvas.SetLeft(movingElement, coords.X - elementCoords.X);
-                Canvas.SetTop(movingElement, coords.Y - elementCoords.Y);
+                Canvas.SetLeft(movingElement, coords.X - elementCoords.X);  // Set left coord
+                Canvas.SetTop(movingElement, coords.Y - elementCoords.Y);   // Set top coord
             }
         }
 
@@ -146,7 +146,7 @@ namespace WPF_MovingObjects
                 movingElement.ClearValue(EffectProperty);
 
                 // Поместить отпущенный объект на самый нижний Z-уровень
-                Canvas.SetZIndex(movingElement, 0);
+                Canvas.SetZIndex(movingElement, 10);
 
                 movingElement = null;
             }
